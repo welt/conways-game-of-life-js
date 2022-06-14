@@ -58,11 +58,7 @@ const analyse = (stage, sensors) => {
 
 const visualise = (stage) => stage
 	.map((row) => row.reduce(
-    (acc, item) => {
-      acc += item ? '•' : '-';
-      return acc;
-    },
-    ''
+    (acc, item) => `${acc}${(item ? '•' : '-')}`, '',
   )
 ).join('\n');
 
