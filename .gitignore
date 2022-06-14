@@ -2,7 +2,7 @@
 # OS X
 ############################
 
-.DS_Store
+.DS_*
 .AppleDouble
 .LSOverride
 Icon
@@ -100,6 +100,7 @@ node_modules
 testApp
 coverage
 
+
 ############################
 # 11ty
 ############################
@@ -107,11 +108,6 @@ coverage
 .env
 _site
 *.cache
-
-############################
-# PostCSS Hash
-############################
-src/_data/manifest.json
 
 
 ############################
