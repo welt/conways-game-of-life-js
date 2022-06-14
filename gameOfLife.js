@@ -49,6 +49,7 @@ const analyse = (stage, sensors) => {
     return row.map((cell, cellIndex) => {
       const cellTotal = sensors.reduce((acc, sensor) => {
         const value = onWorld(stage, rowIndex + sensor[0], cellIndex + sensor[1]);
+        // eslint-disable-next-line no-bitwise
         return acc + ~~value;
       }, 0);
       return determinator(cellTotal, cell);
