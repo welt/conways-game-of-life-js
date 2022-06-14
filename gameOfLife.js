@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 const randomBool = (() => {
-    let a = new Uint8Array(1);
-    return () => {
-      crypto.getRandomValues(a);
-      return a[0] > 200;
-    };
+  const a = new Uint8Array(1);
+  return () => {
+    crypto.getRandomValues(a);
+    return a[0] > 127;
+  };
 })();
 
 const sensorArray = Object.values({
@@ -22,7 +23,7 @@ const makeGrid = (x, y) => new Array(x)
     .map(() => (new Array(y).fill(null)));
 
 const populateCells = (grid) => grid.map((row) => {
-  return row.map((item) => randomBool());
+  return row.map(() => randomBool());
 });
 
 const onWorld = (arr, row, col) => {
