@@ -34,7 +34,7 @@ const onWorld = (arr, row, col) => {
   }
 };
 
-const determinator = (score, item) => {
+const determinator = (item, score) => {
   if (score > 4 || score < 3) {
     return false;
   }
@@ -52,15 +52,13 @@ const analyse = (stage, sensors) => {
         // eslint-disable-next-line no-bitwise
         return acc + ~~value;
       }, 0);
-      return determinator(cellTotal, cell);
+      return determinator(cell, cellTotal);
     })
   })
 };
 
 const visualise = (stage) => stage
-	.map((row) => row.reduce(
-    (acc, item) => `${acc}${(item ? '•' : '-')}`, '',
-  )
+	.map((row) => row.reduce((acc, item) => `${acc}${(item ? '•' : '-')}`, '')
 ).join('\n');
 
 const world = populateCells(makeGrid(8, 8));
