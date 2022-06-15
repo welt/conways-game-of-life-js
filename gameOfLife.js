@@ -1,4 +1,26 @@
+/**
+ * A grid of random boolean vals is evaluated against 
+ * the rules for Conway's Game of Life. The grid here
+ * is an array of arrays, ie. array[row][column].
+ * @depends Node >= v18, or modern browser.
+ * @see [Scientifc American, Oct 1979]
+ * @file gameOfLife.js
+ */
+
 /* eslint-disable no-console */
+const ROWS = 30;
+const COLUMNS = 30;
+const queue = [];
+
+const nodeCrypto = () => {
+  try {
+    return require('node:crypto').webcrypto;
+  } catch(err) {
+    console.error(err);
+  }
+}
+const crypto = (typeof window === 'undefined') ? nodeCrypto() : window.crypto;
+
 const randomBool = (() => {
   const a = new Uint8Array(1);
   return () => {
@@ -18,9 +40,9 @@ const sensorArray = Object.values({
   bottomRight: [1, 1],
 });
 
-const makeGrid = (x, y) => new Array(x)
+const makeGrid = (rows, columns) => new Array(rows)
     .fill(null)
-    .map(() => (new Array(y).fill(null)));
+    .map(() => (new Array(columns).fill(null)));
 
 const populateCells = (grid) => grid.map((row) => {
   return row.map(() => randomBool());
@@ -61,10 +83,29 @@ const visualise = (stage) => stage
 	.map((row) => row.reduce((acc, item) => `${acc}${(item ? '•' : '-')}`, '')
 ).join('\n');
 
-const world = populateCells(makeGrid(8, 8));
-console.log('world >> ', visualise(world));
+const isEvolving = (arr1, arr2) => (
+  JSON.stringify(arr1) !== JSON.stringify(arr2)
+);
 
-const result = analyse(world, sensorArray);
-console.log('result >> ', visualise(result));
+function generate(generation = 2) {
+  queue.push(analyse(queue[0], sensorArray));
+  console.log(`Generation ${generation}`);
+  console.log(visualise(queue[1]));
+  if (isEvolving(queue[0], queue[1])) {
+    queue.shift();
+    generation += 1;
+    generate(generation);
+  }
+}
 
-// ToDo: Recurse & Mocha
+function main() {
+  const world = populateCells(makeGrid(ROWS, COLUMNS));
+  queue.push(analyse(world, sensorArray));
+  console.log('Generation 1');
+  console.log(visualise(queue[0]));
+  generate();
+}
+
+main();
+
+// Handle the condition of a stable but dynamic population without Ctrl-C.
