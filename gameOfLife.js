@@ -1,9 +1,9 @@
 /**
  * A grid of random boolean vals is evaluated against 
- * the rules for Conway's Game of Life. The grid here
+ * the rules for Conway's Game of Life. This grid
  * is an array of arrays, ie. array[row][column].
  * @depends Node >= v18, or modern browser.
- * @see [Scientifc American, Oct 1979]
+ * @see [Scientifc American, Oct 1970]
  * @file gameOfLife.js
  */
 
