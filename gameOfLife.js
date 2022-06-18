@@ -90,23 +90,28 @@ const visualise = (stage) => stage
   .map((row) => row.reduce((acc, item) => `${acc}${(item ? '•' : '-')}`, ''))
   .join('\n');
 
-function main() {
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function main() {
   const world = populateCells(makeGrid(ROWS, COLUMNS));
   let i = 0;
   stack.push(analyse(world, sensorArray));
   process.stdout.write(`Generation ${i}\n`);
   process.stdout.write(visualise(stack[0]) + '\n');
   while (stack.length) {
+    i += 1;
     const nextGeneration = analyse(stack[0], sensorArray);
     if (hasDiedOut(nextGeneration)) {
       process.stdout.write(`Died out after ${i -1} generations. \n`);
       break;
     }
+    await sleep(250);
     process.stdout.write(`Generation ${i}\n`);
     process.stdout.write(visualise(nextGeneration) + '\n');
     stack.push(nextGeneration);
     stack.shift();
-    i += 1;
   }
 }
 
