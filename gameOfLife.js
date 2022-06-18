@@ -2,7 +2,7 @@
  * A grid of random boolean vals is evaluated against 
  * the rules for Conway's Game of Life. This grid
  * is an array of arrays, ie. array[row][column].
- * @depends Node >= v18, or modern browser.
+ * @depends Node >= v18
  * @see [Scientifc American, Oct 1970]
  * @see Alan Zucconi film: https://www.youtube.com/watch?v=Kk2MH9O4pXY
  * @file gameOfLife.js
@@ -17,10 +17,10 @@ const nodeCrypto = () => {
   try {
     return require('node:crypto').webcrypto;
   } catch(err) {
-    console.error(err);
+    console.error('Wrong Node version, or crypto support is disabled.\n', err);
   }
 }
-const crypto = (typeof window === 'undefined') ? nodeCrypto() : window.crypto;
+const crypto = nodeCrypto();
 
 const randomBool = (() => {
   const a = new Uint8Array(1);
@@ -90,8 +90,8 @@ const isEvolving = (arr1, arr2) => (
 
 function generate(generation = 2) {
   queue.push(analyse(queue[0], sensorArray));
-  console.log(`Generation ${generation}`);
-  console.log(visualise(queue[1]));
+  process.stdout.write(`Generation ${generation}\n`);
+  process.stdout.write(visualise(queue[1]) + '\n');
   if (isEvolving(queue[0], queue[1])) {
     queue.shift();
     generation += 1;
@@ -102,8 +102,8 @@ function generate(generation = 2) {
 function main() {
   const world = populateCells(makeGrid(ROWS, COLUMNS));
   queue.push(analyse(world, sensorArray));
-  console.log('Generation 1');
-  console.log(visualise(queue[0]));
+  process.stdout.write('Generation 1'  + '\n');
+  process.stdout.write(visualise(queue[0]) + '\n');
   generate();
 }
 
