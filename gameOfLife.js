@@ -92,21 +92,22 @@ const visualise = (stage) => stage
 
 function main() {
   const world = populateCells(makeGrid(ROWS, COLUMNS));
-  let generation = 1;
+  let i = 0;
   stack.push(analyse(world, sensorArray));
-  process.stdout.write(`Generation ${generation}\n`);
+  process.stdout.write(`Generation ${i}\n`);
   process.stdout.write(visualise(stack[0]) + '\n');
   while (stack.length) {
-    stack.push(analyse(stack[0], sensorArray));
-    process.stdout.write(`Generation ${generation}\n`);
-    process.stdout.write(visualise(stack[1]) + '\n');
-    if (hasDiedOut(stack[1])) {
-      break
+    const nextGeneration = analyse(stack[0], sensorArray);
+    if (hasDiedOut(nextGeneration)) {
+      process.stdout.write(`Died out after ${i -1} generations. \n`);
+      break;
     }
+    process.stdout.write(`Generation ${i}\n`);
+    process.stdout.write(visualise(nextGeneration) + '\n');
+    stack.push(nextGeneration);
     stack.shift();
-    generation += 1;
+    i += 1;
   }
-  process.stdout.write(`Died out after ${generation - 1} generations. \n`);
 }
 
 main();
