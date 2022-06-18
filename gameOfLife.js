@@ -107,12 +107,11 @@ async function runSimulation(world, sensors) {
     i += 1;
     await sleep(DELAY_IN_MS);
     const nextGeneration = analyse(stack.pop(), sensors);
+    visualise(render(nextGeneration), i);
     if (hasDiedOut(nextGeneration)) {
-      visualise(render(nextGeneration), i);
       process.stdout.write(`Died-out after ${i - 1} generations.\n`);
     } else {
       stack.push(nextGeneration);
-      visualise(render(nextGeneration), i);
     }
   }
 }
