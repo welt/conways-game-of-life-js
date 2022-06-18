@@ -98,18 +98,19 @@ function visualise(view, generation) {
   process.stdout.write(view + '\n');
 };
   
-async function runSimulation(world) {
+async function runSimulation(world, sensors) {
   const stack = [];
   let i = 0;
-  stack.push(analyse(world, sensorArray));
+  stack.push(analyse(world, sensors));
   visualise(render(stack[0]), i);
   while (stack.length) {
     i += 1;
-    const nextGeneration = analyse(stack.pop(), sensorArray);
+    await sleep(DELAY_IN_MS);
+    const nextGeneration = analyse(stack.pop(), sensors);
     if (hasDiedOut(nextGeneration)) {
-      process.stdout.write(`Died out after ${i - 1} generations. \n`);
+      visualise(render(nextGeneration), i);
+      process.stdout.write(`Died-out after ${i - 1} generations.\n`);
     } else {
-      await sleep(DELAY_IN_MS);
       stack.push(nextGeneration);
       visualise(render(nextGeneration), i);
     }
@@ -118,7 +119,7 @@ async function runSimulation(world) {
 
 function main() {
   const world = populateCells(makeGrid(ROWS, COLUMNS));
-  runSimulation(world);
+  runSimulation(world, sensorArray);
 }
 
 main();
