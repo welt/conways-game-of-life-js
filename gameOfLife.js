@@ -109,12 +109,12 @@ async function main() {
     i += 1;
     const nextGeneration = analyse(stack[0], sensorArray);
     if (hasDiedOut(nextGeneration)) {
-      process.stdout.write(`Died out after ${i -1} generations. \n`);
-      break;
+      process.stdout.write(`Died out after ${i - 1} generations. \n`);
+    } else {
+      await sleep(250);
+      visualise(render(nextGeneration), i);
+      stack.push(nextGeneration);
     }
-    await sleep(250);
-    visualise(render(nextGeneration), i);
-    stack.push(nextGeneration);
     stack.shift();
   }
 }
