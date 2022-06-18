@@ -99,8 +99,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function main() {
-  const world = populateCells(makeGrid(ROWS, COLUMNS));
+async function runSimulation(world) {
   const stack = [];
   let i = 0;
   stack.push(analyse(world, sensorArray));
@@ -116,6 +115,11 @@ async function main() {
       visualise(render(nextGeneration), i);
     }
   }
+}
+
+function main() {
+  const world = populateCells(makeGrid(ROWS, COLUMNS));
+  runSimulation(world);
 }
 
 main();
