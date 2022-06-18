@@ -86,9 +86,14 @@ const hasDiedOut = (arr) => arr.reduce((acc, row) => {
   }, 0)
 }, 0) === 0;
 
-const visualise = (stage) => stage
+const render = (arr) => arr
   .map((row) => row.reduce((acc, item) => `${acc}${(item ? '•' : '-')}`, ''))
   .join('\n');
+
+const visualise = (stage, generation) => {
+  process.stdout.write(`Generation ${generation}\n`);
+  process.stdout.write(stage + '\n');
+};
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -98,8 +103,7 @@ async function main() {
   const world = populateCells(makeGrid(ROWS, COLUMNS));
   let i = 0;
   stack.push(analyse(world, sensorArray));
-  process.stdout.write(`Generation ${i}\n`);
-  process.stdout.write(visualise(stack[0]) + '\n');
+  visualise(render(stack[0]));
   while (stack.length) {
     i += 1;
     const nextGeneration = analyse(stack[0], sensorArray);
@@ -108,8 +112,7 @@ async function main() {
       break;
     }
     await sleep(250);
-    process.stdout.write(`Generation ${i}\n`);
-    process.stdout.write(visualise(nextGeneration) + '\n');
+    visualise(render(nextGeneration));
     stack.push(nextGeneration);
     stack.shift();
   }
