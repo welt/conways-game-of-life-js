@@ -11,7 +11,6 @@
 /* eslint-disable no-console */
 const ROWS = 30;
 const COLUMNS = 30;
-const stack = [];
 
 const nodeCrypto = () => {
   try {
@@ -36,7 +35,7 @@ const sensorArray = Object.values({
   topRight: [-1, 1],
   centerLeft: [0, -1],
   centerRight: [0, 1],
-	bottomLeft: [1, -1],
+  bottomLeft: [1, -1],
   bottomCenter: [1, 0],
   bottomRight: [1, 1],
 });
@@ -102,18 +101,19 @@ function sleep(ms) {
 
 async function main() {
   const world = populateCells(makeGrid(ROWS, COLUMNS));
+  const stack = [];
   let i = 0;
   stack.push(analyse(world, sensorArray));
   visualise(render(stack[0]), i);
   while (stack.length) {
     i += 1;
-    const nextGeneration = analyse(stack.shift(), sensorArray);
+    const nextGeneration = analyse(stack.pop(), sensorArray);
     if (hasDiedOut(nextGeneration)) {
       process.stdout.write(`Died out after ${i - 1} generations. \n`);
     } else {
       await sleep(250);
-      visualise(render(nextGeneration), i);
       stack.push(nextGeneration);
+      visualise(render(nextGeneration), i);
     }
   }
 }
