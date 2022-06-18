@@ -103,7 +103,7 @@ async function main() {
   const world = populateCells(makeGrid(ROWS, COLUMNS));
   let i = 0;
   stack.push(analyse(world, sensorArray));
-  visualise(render(stack[0]));
+  visualise(render(stack[0]), i);
   while (stack.length) {
     i += 1;
     const nextGeneration = analyse(stack[0], sensorArray);
@@ -112,7 +112,7 @@ async function main() {
       break;
     }
     await sleep(250);
-    visualise(render(nextGeneration));
+    visualise(render(nextGeneration), i);
     stack.push(nextGeneration);
     stack.shift();
   }
