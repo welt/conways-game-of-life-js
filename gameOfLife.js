@@ -110,5 +110,3 @@ function main() {
 }
 
 main();
-
-// Handle the condition of a stable but dynamic population without Ctrl-C.
