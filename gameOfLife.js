@@ -81,8 +81,8 @@ const analyse = (stage, sensors) => {
 };
 
 const visualise = (stage) => stage
-	.map((row) => row.reduce((acc, item) => `${acc}${(item ? '•' : '-')}`, '')
-).join('\n');
+  .map((row) => row.reduce((acc, item) => `${acc}${(item ? '•' : '-')}`, ''))
+  .join('\n');
 
 const isEvolving = (arr1, arr2) => (
   JSON.stringify(arr1) !== JSON.stringify(arr2)
