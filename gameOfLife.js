@@ -32,7 +32,7 @@ const randomBool = (() => {
   };
 })();
 
-const sensorArray = Object.values({
+const SENSORS = Object.values({
   topLeft: [-1, -1], 
   topCenter: [-1, 0], 
   topRight: [-1, 1],
@@ -69,7 +69,7 @@ const determinator = (item, score) => {
   return item;
 };
 
-const analyse = (world, sensors) => {
+const analyse = (world, sensors = SENSORS) => {
   return world.map((row, rowIndex) => {
     return row.map((cell, cellIndex) => {
       const cellTotal = sensors.reduce((acc, sensor) => {
@@ -98,15 +98,15 @@ function visualise(view, generation) {
   process.stdout.write(view + '\n');
 };
   
-async function runSimulation(world, sensors) {
+async function runSimulation(world) {
   const stack = [];
   let i = 0;
-  stack.push(analyse(world, sensors));
+  stack.push(analyse(world));
   visualise(render(stack[0]), i);
   while (stack.length) {
     i += 1;
     await sleep(DELAY_IN_MS);
-    const nextGeneration = analyse(stack.pop(), sensors);
+    const nextGeneration = analyse(stack.pop());
     visualise(render(nextGeneration), i);
     if (hasDiedOut(nextGeneration)) {
       process.stdout.write(`Died-out after ${i - 1} generations.\n`);
@@ -118,7 +118,7 @@ async function runSimulation(world, sensors) {
 
 function main() {
   const world = populateCells(makeGrid(ROWS, COLUMNS));
-  runSimulation(world, sensorArray);
+  runSimulation(world);
 }
 
 main();
