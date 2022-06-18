@@ -67,11 +67,11 @@ const determinator = (item, score) => {
   return item;
 };
 
-const analyse = (stage, sensors) => {
-  return stage.map((row, rowIndex) => {
+const analyse = (world, sensors) => {
+  return world.map((row, rowIndex) => {
     return row.map((cell, cellIndex) => {
       const cellTotal = sensors.reduce((acc, sensor) => {
-        const value = onWorld(stage, rowIndex + sensor[0], cellIndex + sensor[1]);
+        const value = onWorld(world, rowIndex + sensor[0], cellIndex + sensor[1]);
         // eslint-disable-next-line no-bitwise
         return acc + ~~value;
       }, 0);
