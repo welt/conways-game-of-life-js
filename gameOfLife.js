@@ -82,6 +82,7 @@ const analyse = (stage, sensors) => {
 
 const hasDiedOut = (arr) => arr.reduce((acc, row) => {
   return acc + row.reduce((rowTotal, cell) => {
+    // eslint-disable-next-line no-bitwise
     return rowTotal + ~~cell;
   }, 0)
 }, 0) === 0;
