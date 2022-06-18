@@ -4,6 +4,7 @@
  * is an array of arrays, ie. array[row][column].
  * @depends Node >= v18, or modern browser.
  * @see [Scientifc American, Oct 1970]
+ * @see Alan Zucconi film: https://www.youtube.com/watch?v=Kk2MH9O4pXY
  * @file gameOfLife.js
  */
 
