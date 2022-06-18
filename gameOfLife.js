@@ -91,9 +91,9 @@ const render = (arr) => arr
   .map((row) => row.reduce((acc, item) => `${acc}${(item ? '•' : '-')}`, ''))
   .join('\n');
 
-const visualise = (stage, generation) => {
+const visualise = (view, generation) => {
   process.stdout.write(`Generation ${generation}\n`);
-  process.stdout.write(stage + '\n');
+  process.stdout.write(view + '\n');
 };
 
 function sleep(ms) {
