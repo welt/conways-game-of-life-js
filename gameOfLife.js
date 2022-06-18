@@ -11,6 +11,9 @@
 /* eslint-disable no-console */
 const ROWS = 30;
 const COLUMNS = 30;
+const DELAY_IN_MS = 250;
+
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const nodeCrypto = () => {
   try {
@@ -89,16 +92,12 @@ const hasDiedOut = (arr) => arr.reduce((acc, row) => {
 const render = (arr) => arr
   .map((row) => row.reduce((acc, item) => `${acc}${(item ? '•' : '-')}`, ''))
   .join('\n');
-
-const visualise = (view, generation) => {
+  
+function visualise(view, generation) {
   process.stdout.write(`Generation ${generation}\n`);
   process.stdout.write(view + '\n');
 };
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
+  
 async function runSimulation(world) {
   const stack = [];
   let i = 0;
@@ -110,7 +109,7 @@ async function runSimulation(world) {
     if (hasDiedOut(nextGeneration)) {
       process.stdout.write(`Died out after ${i - 1} generations. \n`);
     } else {
-      await sleep(250);
+      await sleep(DELAY_IN_MS);
       stack.push(nextGeneration);
       visualise(render(nextGeneration), i);
     }
