@@ -11,7 +11,7 @@
 /* eslint-disable no-console */
 const ROWS = 30;
 const COLUMNS = 30;
-const queue = [];
+const stack = [];
 
 const nodeCrypto = () => {
   try {
@@ -80,31 +80,33 @@ const analyse = (stage, sensors) => {
   })
 };
 
+const hasDiedOut = (arr) => arr.reduce((acc, row) => {
+  return acc + row.reduce((rowTotal, cell) => {
+    return rowTotal + ~~cell;
+  }, 0)
+}, 0) === 0;
+
 const visualise = (stage) => stage
   .map((row) => row.reduce((acc, item) => `${acc}${(item ? '•' : '-')}`, ''))
   .join('\n');
 
-const isEvolving = (arr1, arr2) => (
-  JSON.stringify(arr1) !== JSON.stringify(arr2)
-);
-
-function generate(generation = 2) {
-  queue.push(analyse(queue[0], sensorArray));
-  process.stdout.write(`Generation ${generation}\n`);
-  process.stdout.write(visualise(queue[1]) + '\n');
-  if (isEvolving(queue[0], queue[1])) {
-    queue.shift();
-    generation += 1;
-    generate(generation);
-  }
-}
-
 function main() {
   const world = populateCells(makeGrid(ROWS, COLUMNS));
-  queue.push(analyse(world, sensorArray));
-  process.stdout.write('Generation 1'  + '\n');
-  process.stdout.write(visualise(queue[0]) + '\n');
-  generate();
+  let generation = 1;
+  stack.push(analyse(world, sensorArray));
+  process.stdout.write(`Generation ${generation}\n`);
+  process.stdout.write(visualise(stack[0]) + '\n');
+  while (stack.length) {
+    stack.push(analyse(stack[0], sensorArray));
+    process.stdout.write(`Generation ${generation}\n`);
+    process.stdout.write(visualise(stack[1]) + '\n');
+    if (hasDiedOut(stack[1])) {
+      break
+    }
+    stack.shift();
+    generation += 1;
+  }
+  process.stdout.write(`Died out after ${generation - 1} generations. \n`);
 }
 
 main();
