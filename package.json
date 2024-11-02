@@ -1,0 +1,23 @@
+{
+  "name": "conways-game-of-life",
+  "version": "2.0.0",
+  "description": "A grid of random boolean values is evaluated against the rules for Conway's Game of Life.",
+  "main": "src/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest --collectCoverage",
+    "lint": "npx eslint ."
+  },
+  "keywords": [],
+  "author": "welt",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "eslint": "^9.13.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^28.8.3",
+    "globals": "^15.11.0",
+    "jest": "^29.7.0"
+  }
+}
