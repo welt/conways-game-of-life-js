@@ -20,8 +20,8 @@ describe("Test the TextConsole visualiser class", () => {
 
   test("It correctly outputs the generation number and the rendered world", () => {
     const input = [
-      [true, false],
-      [false, true],
+      [1, 0],
+      [0, 1],
     ];
     const generation = 1;
     const consoleSpy = jest

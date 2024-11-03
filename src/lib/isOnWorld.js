@@ -11,6 +11,6 @@ export default class IsOnWorld extends BoundaryChecker {
     if (isValidCoordinate(world, row, column)) {
       return world[row][column];
     }
-    return false;
+    return 0;
   }
 }

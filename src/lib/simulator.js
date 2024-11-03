@@ -23,7 +23,7 @@ export default class Simulator {
         return (
           acc +
           row.reduce((rowTotal, cell) => {
-            return rowTotal + ~~cell;
+            return rowTotal + (cell ? 1 : 0);
           }, 0)
         );
       }, 0) === 0
@@ -50,10 +50,10 @@ export default class Simulator {
       return row.map((cell, cellIndex) => {
         const cellTotal = neighbours.reduce((acc, neighbour) => {
           const value = this.boundaryChecker.check(
-            // Calculate the total number of neighbours.
+            // Calculate the total number of live neighbours.
             world,
-            rowIndex + neighbour[0], // Make the neighbour's Y coordinate.
-            cellIndex + neighbour[1], // Make the neighbour's X coordinate.
+            rowIndex + neighbour[0], // Neighbour's Y coordinate.
+            cellIndex + neighbour[1], // Neighbour's X coordinate.
           );
           return acc + value;
         }, world[rowIndex][cellIndex]); // Start accumulator with the current cell.

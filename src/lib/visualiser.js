@@ -11,7 +11,7 @@ export default class Visualiser {
   /**
    * Draws a 2D world grid.
    * @param world {Array<Array<boolean>>} - A 2D array representing the grid of organisms.
-   * @param generation {number} - The current generation
+   * @param i {number} - The current generation
    * @returns void
    */
   /* eslint-disable no-unused-vars */

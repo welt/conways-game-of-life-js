@@ -4,7 +4,7 @@ A grid of random boolean values is evaluated against the rules for Conway's Game
 
 [Scientifc American, Oct 1970](https://www.ibiblio.org/lifepatterns/october1970.html)
 
-[Alan Zucconi film about Conway's Game of Life:](https://www.youtube.com/watch?v=Kk2MH9O4pXY)
+[Alan Zucconi film about Conway's Game of Life](https://www.youtube.com/watch?v=Kk2MH9O4pXY)
 
 ---
 
