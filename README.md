@@ -18,7 +18,7 @@ $ node src/main.js
 
 or
 
-$ deno run src/main.js
+$ deno run start
 
 ## Development Start
 
