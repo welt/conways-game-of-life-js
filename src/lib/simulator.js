@@ -53,10 +53,10 @@ export default class Simulator {
             // Calculate the total number of neighbours.
             world,
             rowIndex + neighbour[0], // Make the neighbour's Y coordinate.
-            cellIndex + neighbour[1], // Mkae the neighbour's X coordinate.
+            cellIndex + neighbour[1], // Make the neighbour's X coordinate.
           );
           return acc + value;
-        }, world[rowIndex][cellIndex]); // Add the current cell to the total.
+        }, world[rowIndex][cellIndex]); // Start accumulator with the current cell.
         return this.ruleset.apply(cell, cellTotal);
       });
     });
