@@ -6,7 +6,7 @@ class TestRuleset extends Ruleset {
   }
 }
 
-describe("Ruleset abstract class", () => {
+describe("Test the Ruleset abstract class", () => {
   test("It should throw an error when instantiated directly", () => {
     expect(() => {
       new Ruleset();

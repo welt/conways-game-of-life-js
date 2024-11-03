@@ -17,8 +17,8 @@ import { randomBool } from "./lib/random.js";
 
 const ROWS = 16;
 const COLUMNS = 16;
-const DELAY_IN_MS = 50;
-const MAX_STACK_SIZE = 100;
+const DELAY_IN_MS = 0;
+const MAX_STACK_SIZE = 2000;
 
 function checkStackOverflow(generation) {
   if (generation > MAX_STACK_SIZE) {
@@ -42,12 +42,11 @@ const simulator = new Simulator(ruleset, boundaryChecker);
 async function runSimulation(world) {
   const stack = [];
   let i = 0;
-  stack.push(simulator.analyse(world.getWorld));
-  visualiser.draw(stack[0], i);
+  visualiser.draw(world.getWorld, i);
+  stack.push(world.getWorld);
   while (stack.length) {
     i += 1;
     checkStackOverflow(i);
-    await sleep(DELAY_IN_MS);
     const nextGeneration = simulator.analyse(stack.pop());
     visualiser.draw(nextGeneration, i);
     if (simulator.hasDiedOut(nextGeneration)) {
@@ -55,6 +54,7 @@ async function runSimulation(world) {
     } else {
       stack.push(nextGeneration);
     }
+    await sleep(DELAY_IN_MS);
   }
 }
 
@@ -64,7 +64,7 @@ async function main() {
   try {
     process.stdout.write(`Starting simulation...\n\n`);
     await runSimulation(world);
-    process.stdout.write(`Simulation completed.\n`);
+    process.stdout.write(`Simulation complete.\n`);
   } catch (error) {
     if (error instanceof SimulatorError) {
       process.stdout.write(`${error.message}\n${error.cause}\n`);

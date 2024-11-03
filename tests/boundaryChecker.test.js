@@ -6,7 +6,7 @@ class TestBoundaryChecker extends BoundaryChecker {
   }
 }
 
-describe("BoundaryChecker abstract class", () => {
+describe("Test the BoundaryChecker abstract class", () => {
   test("It should throw an error when instantiated directly", () => {
     expect(() => {
       new BoundaryChecker();

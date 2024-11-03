@@ -7,7 +7,7 @@ export default class WorldMaker {
    * @param { number } size - The size of the world.
    * @param { Function } randomBool - A function that returns a random boolean.
    */
-  constructor(size = [16, 16], randomBool = () => Math.random() > 0.5) {
+  constructor(size = [10, 10], randomBool = () => Math.random() % 2) {
     this.size = size;
     this.randomBool = randomBool;
     this.world = this.createWorld();
@@ -20,7 +20,7 @@ export default class WorldMaker {
   }
 
   makeGrid(rows, columns) {
-    return new Array(rows).fill(null).map(() => new Array(columns).fill(null));
+    return new Array(rows).fill(0).map(() => new Array(columns).fill(0));
   }
 
   populateCells(grid) {

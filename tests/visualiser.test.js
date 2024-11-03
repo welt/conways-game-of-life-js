@@ -6,7 +6,7 @@ class TestVisualiser extends Visualiser {
   }
 }
 
-describe("Visualiser abstract class", () => {
+describe("Test the Visualiser abstract class", () => {
   test("It should throw an error when instantiated directly", () => {
     expect(() => {
       new Visualiser();

@@ -1,13 +1,13 @@
 import Ruleset from "./ruleset.js";
 
 export default class ConwayRules extends Ruleset {
-  apply(organism, score) {
+  apply(cell, score) {
     if (score > 4 || score < 3) {
-      return false;
+      return 0;
     }
     if (score === 3) {
-      return true;
+      return 1;
     }
-    return organism;
+    return cell;
   }
 }

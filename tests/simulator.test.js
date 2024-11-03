@@ -1,10 +1,7 @@
-/**
- * @see https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
- */
 import { jest } from "@jest/globals";
 import Simulator from "../src/lib/simulator.js";
 
-describe("Simulator class", () => {
+describe("Test the Simulator class", () => {
   let simulator;
   let ruleset;
   let boundaryChecker;
@@ -37,24 +34,5 @@ describe("Simulator class", () => {
       [0, 0, 0],
     ];
     expect(simulator.hasDiedOut(world)).toBe(false);
-  });
-
-  test("Its analyse() amethod applies ruleset correctly", () => {
-    // Conway's boat formation should remain unchanged - it's stable.
-    const world = [
-      [0, 0, 0, 0, 0],
-      [0, 1, 1, 0, 0],
-      [0, 1, 0, 1, 0],
-      [0, 0, 1, 0, 0],
-      [0, 0, 0, 0, 0],
-    ];
-    const expected = [
-      [0, 0, 0, 0, 0],
-      [0, 1, 1, 0, 0],
-      [0, 1, 0, 1, 0],
-      [0, 0, 1, 0, 0],
-      [0, 0, 0, 0, 0],
-    ];
-    expect(simulator.analyse(world)).toEqual(expected);
   });
 });

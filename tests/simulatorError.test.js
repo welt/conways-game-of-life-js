@@ -1,6 +1,6 @@
 import SimulatorError from "../src/lib/simulatorError.js";
 
-describe("SimulatorError custom error class", () => {
+describe("Test the SimulatorError custom error class", () => {
   test("It sets message and cause correctly", () => {
     const message = "An error occurred";
     const cause = "Root cause";

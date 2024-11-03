@@ -1,7 +1,7 @@
 import { jest } from "@jest/globals";
 import TextConsole from "../src/lib/textConsole.js";
 
-describe("TextConsole visualiser class", () => {
+describe("Test the TextConsole visualiser class", () => {
   let textConsole;
 
   beforeEach(() => {

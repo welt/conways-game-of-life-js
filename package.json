@@ -6,15 +6,15 @@
   "type": "module",
   "scripts": {
     "start": "node src/main.js",
-    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest --collectCoverage",
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest --collectCoverage --watchAll",
     "lint": "npx eslint ."
   },
   "keywords": [],
   "author": "welt",
   "license": "UNLICENSED",
   "devDependencies": {
-    "@eslint/js": "^9.13.0",
-    "eslint": "^9.13.0",
+    "@eslint/js": "^9.14.0",
+    "eslint": "^9.14.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.8.3",
     "globals": "^15.11.0",

@@ -1,6 +1,6 @@
 import IsOnWorld from "../src/lib/isOnWorld.js";
 
-describe("test boundary check functions", () => {
+describe("Test the boundary check functions", () => {
   test("It checks if a coordinate is on world", () => {
     const world = [
       [1, 2, 3],
@@ -10,6 +10,6 @@ describe("test boundary check functions", () => {
     const checker = new IsOnWorld();
 
     expect(checker.check(world, 1, 1)).toBe(5);
-    expect(checker.check(world, 3, 3)).toBeNull();
+    expect(checker.check(world, 3, 3)).toBe(false);
   });
 });
