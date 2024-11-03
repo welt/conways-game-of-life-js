@@ -48,9 +48,9 @@ export default class Simulator {
     this.checkValidWorld(world);
     return world.map((row, rowIndex) => {
       return row.map((cell, cellIndex) => {
+        // Calculate the total number of live neighbours.
         const cellTotal = neighbours.reduce((acc, neighbour) => {
           const value = this.boundaryChecker.check(
-            // Calculate the total number of live neighbours.
             world,
             rowIndex + neighbour[0], // Neighbour's Y coordinate.
             cellIndex + neighbour[1], // Neighbour's X coordinate.
