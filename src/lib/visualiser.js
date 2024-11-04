@@ -12,10 +12,11 @@ export default class Visualiser {
    * Draws a 2D world grid.
    * @param world {Array<Array<boolean>>} - A 2D array representing the grid of organisms.
    * @param i {number} - The current generation
+   * @param population {number} - Number of live cells
    * @returns void
    */
   /* eslint-disable no-unused-vars */
-  draw(world, i) {
+  draw(world, i, population) {
     throw new Error("Method not implemented.");
   }
 }

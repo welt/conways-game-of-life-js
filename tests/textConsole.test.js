@@ -18,17 +18,20 @@ describe("Test the TextConsole visualiser class", () => {
     expect(textConsole.render(input)).toBe(expectedOutput);
   });
 
-  test("It correctly outputs the generation number and the rendered world", () => {
+  test("It correctly outputs the generation number, population and the rendered world", () => {
     const input = [
       [1, 0],
       [0, 1],
     ];
     const generation = 1;
+    const population = 2;
     const consoleSpy = jest
       .spyOn(process.stdout, "write")
       .mockImplementation(() => {});
-    textConsole.draw(input, generation);
-    expect(consoleSpy).toHaveBeenCalledWith(`Generation ${generation}\n`);
+    textConsole.draw(input, generation, population);
+    expect(consoleSpy).toHaveBeenCalledWith(
+      `Generation ${generation}, Population ${population}\n`,
+    );
     expect(consoleSpy).toHaveBeenCalledWith("*-\n-*\n\n");
     consoleSpy.mockRestore();
   });
