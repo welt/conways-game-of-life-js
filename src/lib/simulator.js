@@ -17,17 +17,15 @@ export default class Simulator {
     this.boundaryChecker = boundaryChecker;
   }
 
-  hasDiedOut(world) {
-    return (
-      world.reduce((acc, row) => {
-        return (
-          acc +
-          row.reduce((rowTotal, cell) => {
-            return rowTotal + (cell ? 1 : 0);
-          }, 0)
-        );
-      }, 0) === 0
-    );
+  population(world) {
+    return world.reduce((acc, row) => {
+      return (
+        acc +
+        row.reduce((rowTotal, cell) => {
+          return rowTotal + (cell ? 1 : 0);
+        }, 0)
+      );
+    }, 0);
   }
 
   checkValidWorld(world) {

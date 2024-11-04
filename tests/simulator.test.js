@@ -18,21 +18,21 @@ describe("Test the Simulator class", () => {
     simulator = new Simulator(ruleset, boundaryChecker);
   });
 
-  test("Its hasDiedOut() method returns true for an empty world", () => {
+  test("Its population() method returns 0 for an empty world", () => {
     const world = [
       [0, 0, 0],
       [0, 0, 0],
       [0, 0, 0],
     ];
-    expect(simulator.hasDiedOut(world)).toBe(true);
+    expect(simulator.population(world)).toBe(0);
   });
 
-  test("Its hasDiedOut() method returns false for a non-empty world", () => {
+  test("Its population() method returns correctly for a non-empty world", () => {
     const world = [
       [0, 1, 0],
       [0, 0, 0],
       [0, 0, 0],
     ];
-    expect(simulator.hasDiedOut(world)).toBe(false);
+    expect(simulator.population(world)).toBe(1);
   });
 });
