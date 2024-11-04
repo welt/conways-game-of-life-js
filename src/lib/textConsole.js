@@ -18,8 +18,10 @@ export default class TextConsole extends Visualiser {
    * @param generation {number}
    * @returns void
    */
-  draw(world, generation) {
-    process.stdout.write(`Generation ${generation}\n`);
+  draw(world, generation, population) {
+    process.stdout.write(
+      `Generation ${generation}, Population ${population}\n`,
+    );
     process.stdout.write(this.render(world) + "\n\n");
   }
 }
