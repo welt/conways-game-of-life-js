@@ -248,4 +248,25 @@ describe("Evaluate against known Game of Life results", () => {
       expect(res).toEqual(expectedGliderStates[t + 1]);
     }
   });
+
+  test("It should always give the same result for the same world", () => {
+    const always = 1000;
+    const world = [
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 1, 1, 1, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+    ];
+    const expected = [
+      [0, 0, 0, 0, 0],
+      [0, 0, 1, 0, 0],
+      [0, 0, 1, 0, 0],
+      [0, 0, 1, 0, 0],
+      [0, 0, 0, 0, 0],
+    ];
+    for (let i = 0; i < always; i++) {
+      expect(simulator.analyse(world)).toEqual(expected);
+    }
+  });
 });
