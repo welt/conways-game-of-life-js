@@ -2,7 +2,6 @@ import { jest } from "@jest/globals";
 import ConwayRules from "../src/lib/conwayRules.js";
 import IsOnWorld from "../src/lib/isOnWorld.js";
 import Simulator from "../src/lib/simulator.js";
-import WorldMaker from "../src/lib/worldMaker.js";
 
 describe("Test the analyser rule functions", () => {
   const conwayRules = new ConwayRules();
@@ -250,10 +249,15 @@ describe("Evaluate against known Game of Life results", () => {
     }
   });
 
-  test("It should always give the same result for the same world", () => {
+  test("It always gives the same result for the same world", () => {
     const always = 1000;
     const random = jest.fn(() => Math.random() >= 0.5);
-    const world = new WorldMaker({ rows: 6, columns: 6, random }).getWorld;
+    const makeWorld = jest.fn((rows, columns) =>
+      Array.from({ length: rows }, () =>
+        Array.from({ length: columns }, random),
+      ),
+    );
+    const world = makeWorld(6, 6);
     const expected = simulator.analyse(world);
     for (let i = 0; i < always; i++) {
       expect(simulator.analyse(world)).toEqual(expected);
