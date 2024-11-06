@@ -248,4 +248,19 @@ describe("Evaluate against known Game of Life results", () => {
       expect(res).toEqual(expectedGliderStates[t + 1]);
     }
   });
+
+  test("It always gives the same result for the same world", () => {
+    const always = 1000;
+    const random = jest.fn(() => Math.random() >= 0.5);
+    const makeWorld = jest.fn((rows, columns) =>
+      Array.from({ length: rows }, () =>
+        Array.from({ length: columns }, random),
+      ),
+    );
+    const world = makeWorld(6, 6);
+    const expected = simulator.analyse(world);
+    for (let i = 0; i < always; i++) {
+      expect(simulator.analyse(world)).toEqual(expected);
+    }
+  });
 });
