@@ -54,7 +54,7 @@ export default class Simulator {
             cellIndex + neighbour[1], // Neighbour's X coordinate.
           );
           return acc + value;
-        }, world[rowIndex][cellIndex]); // Start accumulator with the current cell.
+        }, 0);
         return this.ruleset.apply(cell, cellTotal);
       });
     });

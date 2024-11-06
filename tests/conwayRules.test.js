@@ -9,9 +9,9 @@ describe("Test the analyser rule functions", () => {
   test("It calculates the Conway's score correctly for a live cell", () => {
     const cell = 1;
     expect(conwayRules.apply(cell, 5)).toBe(0);
-    expect(conwayRules.apply(cell, 2)).toBe(0);
+    expect(conwayRules.apply(cell, 2)).toBe(1);
     expect(conwayRules.apply(cell, 3)).toBe(1);
-    expect(conwayRules.apply(cell, 4)).toBe(cell);
+    expect(conwayRules.apply(cell, 4)).toBe(0);
   });
 
   test("It calculates the Conway's score correctly for a dead cell", () => {
