@@ -6,6 +6,8 @@ A grid of random boolean values is evaluated against the rules for Conway's Game
 
 [Alan Zucconi film about Conway's Game of Life](https://www.youtube.com/watch?v=Kk2MH9O4pXY)
 
+[Robert Wainwright, Conway's Game of Life: Early Personal Recollections](https://www.newbooks-services.de/MediaFiles/Texts/2/9781849962162_Excerpt_001.pdf)
+
 ---
 
 ## Quick Start
