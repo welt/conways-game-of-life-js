@@ -13,8 +13,8 @@
   "author": "welt",
   "license": "UNLICENSED",
   "devDependencies": {
-    "@eslint/js": "^9.14.0",
-    "eslint": "^9.14.0",
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.9.0",
     "globals": "^15.12.0",
